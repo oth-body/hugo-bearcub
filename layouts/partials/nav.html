@@ -3,7 +3,17 @@
 {{ end }}
 <a href='{{ absURL "index.xml" }}'>RSS</a>
 
+<!-- Link to Bitcoin tutorials page -->
+<a href="{{ relURL "bitcoin-tutorials/bitcoin-tutorials/" }}">Bitcoin Tutorials</a>
+
+<!-- Link to site info page -->
+<a href="{{ relURL "info" }}">Info</a>
+
+<!-- Link to GitHub -->
+<a href="https://github.com/oth-body">GitHub</a>
+
 <!-- Convert this page's translations into a dict -->
+{{/* 
 {{ $translations := dict }}
 {{ range .Translations }}
   {{ $translations = merge $translations (dict .Language.Lang .) }}
@@ -20,3 +30,4 @@
     {{ end }}
   {{ end }}
 {{ end }}
+*/}}

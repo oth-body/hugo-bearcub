@@ -150,7 +150,7 @@ of the [demo](https://clente.github.io/hugo-bearcub/) for more information.
 # Basic config
 baseURL = "https://example.com"
 theme = "hugo-bearcub"
-copyright = "John Doe (CC BY 4.0)"
+copyright = "Andre Chang (CC BY 4.0)"
 defaultContentLanguage = "en"
 
 # Generate a nice robots.txt for SEO
@@ -234,7 +234,7 @@ enableRobotsTXT = true
   # email is also added to the footer of each post. You can hide the "reply to"
   # link by using a `hideReply` param in front matter.
   [params.author]
-    name = "John Doe" # Your name as shown in the RSS feed metadata
+    name = "Andre Chang" # Your name as shown in the RSS feed metadata
     email = "me@example.com" # Added to the footer so readers can reply to posts
 ```
 
