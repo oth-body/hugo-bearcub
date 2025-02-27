@@ -1,3 +1,38 @@
-<!-- A partial to be overwritten by the user.
-  Simply place a custom_head.html into
-  your local /layouts/partials-directory -->
+<!--- custom_head.html --->
+{{- /* This file will be included in the <head> section of your site */ -}}
+
+  {{- /* Meta tags */ -}}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description }}{{ end }}">
+  
+  {{- /* Favicon */ -}}
+  <link rel="icon" href="{{ "favicon.ico" | relURL }}" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | relURL }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | relURL }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | relURL }}">
+  
+  {{- /* RSS feed */ -}}
+  {{ with .OutputFormats.Get "rss" -}}
+    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+  {{ end }}
+  
+  {{- /* OpenGraph and Twitter card metadata for better social sharing */ -}}
+  {{ template "_internal/opengraph.html" . }}
+  {{ template "_internal/twitter_cards.html" . }}
+  
+  {{- /* Analytics: GoatCounter */ -}}
+  <script data-goatcounter="https://belarubo223.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  
+  {{- /* Optionally add custom CSS */ -}}
+  {{ $styles := resources.Get "css/custom.css" }}
+  {{ if $styles }}
+    {{ $styles := $styles | resources.Minify | resources.Fingerprint }}
+    <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}">
+  {{ end }}
+  
+  {{- /* Optionally add custom JavaScript */ -}}
+  {{ $js := resources.Get "js/custom.js" }}
+  {{ if $js }}
+    {{ $js := $js | resources.Minify | resources.Fingerprint }}
+    <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+  {{ end }}
